@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件参数校验与非props特性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+    <div id="root">
+        <child content="hello world"></child>
+    </div>
+
+    <script>
+
+        // props特性
+        // 父组件传递参数，子组件接收参数，子组件可以使用父组件传递过来的参数
+        // 属性不会显示在子组件的标签中
+        // 非props特性
+        // 父组件传递参数，子组件不接收，子组件不可以使用父组件的参数
+        // 属性会显示在子组件的标签中
+        Vue.component('child',{
+            props: {
+                // 组件的参数校验
+                content: {
+                    type: String,
+                    // required: false,
+                    // default: 'default value',
+                    // 自定义校验器
+                    validator: function (value) {
+                        return (value.length > 5)
+                    }
+                }
+            },
+            template: '<div>{{content}}</div>'
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+            }
+        })
+    </script>
+</body>
+
+</html>

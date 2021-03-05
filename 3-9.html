@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的set方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <div v-for="(item,key,index) of userInfo">
+            {{index}}--{{key}}--{{item}}
+        </div>
+    </div>
+
+    <script>
+        
+        // 数组和对象的set方法一致
+        // 可以通过全局方法
+        // Vue.set(vm.userInfo,"address","beijing")向对象中添加或修改一条数据
+        // 可以通过实例方法
+        // vm.$set(vm.userInfo,"address","beijing")向对象中添加或修改一条数据
+        
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    name: "Dell",
+                    age: 28,
+                    gender: "male",
+                    salary: "secret"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

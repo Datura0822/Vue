@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的使用animate.css库</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+</head>
+
+<body>
+
+    <div id="root">
+        <transition name="fade"
+                    enter-active-class="animated flash"
+                    leave-active-class="animated flash"
+        >
+            <div v-if="show">hello world</div>
+        </transition>
+
+        <button @click="handleClick">切换</button>
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

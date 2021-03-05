@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件与v-once指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+
+        <!-- 动态组件 -->
+        <component :is="type"></component>
+
+        <!-- <child-one v-if="type==='child-one'"></child-one>
+        <child-two v-if="type==='child-two'"></child-two> -->
+
+        <button @click="handleBtnClick">change</button>
+
+    </div>
+
+    <script>
+
+        // 通过v-once指令，组件在第一次被渲染到页面的时候，内容会被放到缓存中，
+        // 在下一次使用的时候不需要重新渲染。有效提高性能
+        Vue.component('child-one', {
+            template: '<div v-once>child-one</div>'
+        })
+
+        Vue.component('child-two', {
+                template: '<div v-once>child-two</div>'
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                type: 'child-one'
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.type = this.type === 'child-one' ? 'child-two' : 'child-one'
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

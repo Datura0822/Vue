@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的Js动画与Velocity.js的结合</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+</head>
+
+<body>
+
+
+    <div id="root">
+        <transition name="fade"
+                    @before-enter="handleBeforeEnter"
+                    @enter="handleEnter"
+                    @after-enter="handleAfterEnter">
+            <div v-if="show">hello world</div>
+        </transition>
+
+        <button @click="handleClick">切换</button>
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                },
+                handleBeforeEnter: function (el) {
+                    el.style.color = 'red'
+                },
+                handleEnter: function (el,done) {
+                    setTimeout(() => {
+                        el.style.color = 'green'
+                    }, 2000);
+                    setTimeout(() => {
+                        done()
+                    }, 4000);
+                },
+                handleAfterEnter: function (el) {
+                    el.style.color = "#000"
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的样式绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- <style>
+        .activated {
+            color: hotpink;
+        }
+    </style> -->
+</head>
+
+<body>
+
+    <!-- 通过对象绑定 -->
+    <!-- <div id="root">
+        <div @click="handleDivClick"
+             :class="{activated: isActivated}">
+            hello world
+        </div>
+    </div>
+    <script>
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                isActivated: false
+            },
+            methods: {
+                handleDivClick: function () {
+                    this.isActivated = !this.isActivated
+                }
+            }
+        })
+    </script>-->
+
+    <!-- 通过数组绑定 -->
+    <!-- <div id="root">
+        <div @click="handleDivClick"
+             :class="[activated]">
+            hello world
+        </div>
+    </div >
+
+    <script>
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                activated: ""
+            },
+            methods: {
+                handleDivClick: function () {
+                    if(this.activated == ""){
+                        this.activated = "activated"
+                    }
+                    else{
+                        this.activated = ""
+                    }
+                }
+            }
+        })
+    </script> -->
+
+    <!-- 内联样式 -->
+    <div id="root">
+        <div :style="[styleobj,{fontSize: '50px'}]"
+             @click="handleDivClick">
+            hello world
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#root",
+            data: {
+                styleobj: {
+                    color: "black"
+                }
+            },
+            methods: {
+                handleDivClick: function () {
+                    this.styleobj.color = this.styleobj.color == "black"?"red":"black"
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

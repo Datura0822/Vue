@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的列表渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 对象循环 -->
+    <div id="root">
+        <div v-for="(item,key,index) of userInfo">
+            {{index}}--{{key}}--{{item}}
+        </div>
+    </div>
+
+    <script>
+
+        // 直接添加一条数据，数据改变，但不会渲染到页面中，可以通过修改引用来添加一条数据
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    name: "Dell",
+                    age: 28,
+                    gender: "male",
+                    salary: "secret"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

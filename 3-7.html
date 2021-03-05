@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的条件渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- v-if和v-show都能控制模板标签是否在页面上显示
+    v-if对应的标签，对应的变量值是false，不存在于Dom
+    v-show对应的标签，对应的变量值是false，存在于Dom，只是display:none
+    v-show的性能相对高，因为不用频繁删除和添加Dom -->
+    <!-- <div id="root">
+        <div v-if="show">{{message}}</div>
+        <div v-show="show">{{message}}</div>
+    </div> -->
+
+    <!-- v-if和v-else一定要连在一起使用 -->
+    <!-- <div id="root">
+        <div v-if="show === 'a'">{{message}}</div>
+        <div v-else-if="show === 'b'">This is b</div>
+        <div v-else>This is others</div>
+    </div> -->
+
+    <!-- 如果不加key，Vue自动复用输入框 -->
+    <div id="root">
+        <div v-if="show === 'a'">
+            用户名<input key="username"/>
+        </div>
+        <div v-else>
+            密码<input key="password" />
+        </div>
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: 'a',
+                message: "This is a"
+            }
+        })
+    </script>
+</body>
+
+</html>
